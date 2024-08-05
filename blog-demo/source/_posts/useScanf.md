@@ -1,7 +1,7 @@
 ---
 title: 如何在VS里使用scanf
 date: 2023-10-05 22:37:32
-tags:
+tags: C语言
 ---
 # VS里怎么连scanf都用不了？ #
 不少刚接触[Visual Studio](https://visualstudio.microsoft.com/zh-hans/free-developer-offers/)的可能发现使用scanf会报错(如下)

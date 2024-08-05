@@ -1,7 +1,8 @@
 ---
 title: =C语言= 整型变量与过大的整数
 date: 2023-10-14 07:09:14
-tags:
+tags: C语言
+cover: https://picbed0521.oss-cn-shanghai.aliyuncs.com/blogpic/bigint.jpg
 ---
 ## 整型家族 #
 在使用C语言写程序时，会储存各种长度的整型,而在整型家族中，长度的比较如下

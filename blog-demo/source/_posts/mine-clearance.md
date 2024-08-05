@@ -1,7 +1,7 @@
 ---
 title: =C语言实践= 手把手教你做高端cmd简单扫雷
 date: 2023-10-30 07:28:01
-tags:
+tags: C语言 实践项目
 cover: https://picbed0521.oss-cn-shanghai.aliyuncs.com/blogpic/Snipaste_2023-11-02_10-27-25.jpg
 ---
 # 直接开始吧！

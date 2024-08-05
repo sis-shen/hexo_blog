@@ -1,7 +1,7 @@
 ---
 title: 玩转N组输入和多组输入
 date: 2023-10-18 22:39:57
-tags:
+tags: C语言 多组输入
 cover: https://picbed0521.oss-cn-shanghai.aliyuncs.com/blogpic/Snipaste_2023-10-20_07-34-35.jpg
 ---
 

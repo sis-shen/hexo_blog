@@ -13,9 +13,9 @@ menu:
   归档: /archives/ || fas fa-archive
   Tags: /tags/ || fas fa-tags
   分类: /categories/ || fas fa-folder-open
-  列表||fas fa-list:
-    音乐: /music/ || fas fa-music
-    电影: /movies/ || fas fa-video
+  #列表||fas fa-list:
+  #  音乐: /music/ || fas fa-music
+  #  电影: /movies/ || fas fa-video
   友链: /link/ || fas fa-link
   关于: /about/ || fas fa-heart
 
@@ -765,7 +765,7 @@ subtitle:
   # loop: true
   # 如果關閉打字效果，subtitle 只會顯示 sub 的第一行文字
   sub: 
-    - "祝你早安，午安和晚安"
+    - "..."
 
 # Loading Animation (加載動畫)
 preloader:
