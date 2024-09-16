@@ -103,7 +103,7 @@ hello1 hello2 hello1 hello2
 
 实际上`缓冲区`属于进程的一部分，且`fork`时遵循`写时拷贝`
 
-# 模拟一下C语言的文件接口（包括缓冲区）
+# 模拟封装Linux下C语言的文件接口（包括缓冲区）
 
 ## 主要目标
 采用`Mystdio.h`声明，`Mystdio.c`实现的方式，封装`read`,`write`,`close`系统调用接口。并提供用户级缓冲区和缓冲区的刷新等功能
@@ -128,7 +128,7 @@ void _fclose(_FILE* fp);
 #endif 
 ```
 
-## 部分实现接口
+## 实现无缓冲区的接口
 实现的部分由`Mystdio.c`完成
 ### 头文件
 这里的头文件要能够提供使用系统调用接口,以及调用堆区的接口,所以 头文件如下:
@@ -139,6 +139,7 @@ void _fclose(_FILE* fp);
 #include <sys/stat.h>
 #include <fcntl.h>
 #include <stdlib.h>
+#include <unistd.h>
 ```
 
 ### _fopen函数
@@ -175,3 +176,118 @@ _FILE * _fopen(const char *filename,const char *flag)
     return fp;
 }
 ```
+
+### _fwrite函数 ————无缓冲区
+然后是先简单地写一个没有缓冲区的`_fwrite`
+
+带缓冲区版本的稍后添加
+```C
+int _fwrite(_FILE *fp,const char* s,int len)
+{
+    return wrtie(fp->fileno,s,len);//无缓冲区的写入版本
+}
+```
+
+### _fclose函数 ————不刷新缓冲区
+这里也是先写个没缓冲区的
+```C
+void _fclose(_FILE* fp)
+{
+    if(fp == NULL) return;//防止空指针
+    close(fp->fileno);//关闭文件
+    free(fp);//释放资源
+}
+```
+
+## 为接口适配缓冲区
+
+### 为`_FILE`结构体添加输入输出缓冲区
+`缓冲区`和`刷新规则标志`声明在结构体中，使每个打开的文件都有独立的用户级缓冲区和刷新规则
+```C
+#define SIZE 1024 //定义缓冲区大小
+#define FLUSH_NONE 0 //无缓冲
+#define FLUSH_LINE 1 //行缓冲
+#define FLUSH_ALL 2 //全缓冲
+
+typedef struct IO_FILE{
+    int fileno;//文件描述符
+    int flag; //刷新规则标志
+    char inbuffer[SIZE];//输入缓冲区
+    int in_pos;//输入缓冲区指针
+    char outbuffer[SIZE];//输出缓冲区
+    int out_pos;//输出缓冲区指针
+}_FILE;
+```
+
+### fopen添加语句
+`fopen`仅需添加几句用于初始化的代码
+```C
+    //_FILE *fp = (_FILE*)malloc(sizeof(_FILE)); //申该语句之前都不变
+    fp->fileno = fd;//储存文件描述符
+    fp->flag = FLUSH_LINE;//设置为行刷新
+    fp->in_pos = 0;//指针置0
+    fp->out_pos = 0;//指针置0
+    //return fp;  //这句也不变
+```
+
+### fwrite重写
+`fwrite`要根据不同的刷新方式进行写入
+
+```C
+int _fwrite(_FILE *fp,const char* s,int len)
+{
+    memcpy(&(fp->outbuffer[fp->out_pos]),s,len);//将内容拷贝至缓冲区指定位置
+    fp->out_pos +=len;//简易偏移out_pos
+    if(fp->fileno == FLUSH_NONE)
+    {
+        write(fp->fileno,s,fp->out_pos);//无缓冲区的写入版本
+    }
+    else if(fp->flag == FLUSH_LINE)
+    {
+        if(fp->outbuffer[fp->out_pos-1] == '\n')
+        {
+            write(fp->fileno,s,fp->out_pos);//立即刷新
+            fp->out_pos = 0;
+        }
+        else{
+            return len;
+        }
+    }
+    else if(fp->flag == FLUSH_ALL)
+    {
+        if(fp->out_pos == SIZE)
+        {
+            write(fp->fileno,s,fp->out_pos);//立即刷新
+            fp->out_pos = 0;
+        }
+        else{
+            return len;
+        }
+    }
+}
+```
+
+### 添加`_fflush`和修改`_fclose`
+```C
+void _fflush(_FILE* fp)
+{
+    if(fp->out_pos > 0)
+    {
+        write(fp->fileno,fp->outbuffer,fp->out_pos);//立即刷新
+        fp->out_pos = 0;
+    }
+}
+
+void _fclose(_FILE* fp)
+{
+    if(fp == NULL) return;//防止空指针
+    _fflush(fp);//刷新缓冲区
+    close(fp->fileno);//关闭文件
+    free(fp);//释放资源
+}
+```
+
+## 小结
+至此,我们已经封装了基本的写入功能,更多的细节可自行完善
+
+[戳我去github仓库🔗](https://github.com/sis-shen/Linux_Code/tree/main/mystdio) 查看源文件

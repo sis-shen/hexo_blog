@@ -87,8 +87,40 @@ cover:
   position: both
   # When cover is not set, the default cover is displayed (當沒有設置cover時，默認的封面顯示)
   default_cover:
-    - https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg
+    - https://picbed0521.oss-cn-shanghai.aliyuncs.com/blogpic/24aec23065665be0a32f41a35f786911.jpg
     - https://picbed.supdriver.top/img/avatar.png
+    - https://picbed0521.oss-cn-shanghai.aliyuncs.com/blogpic/6d98b25ed940e1702fd7023bd166babf.jpg
+    - https://picbed0521.oss-cn-shanghai.aliyuncs.com/blogpic/12a4cf6640ed132e210ab645ff95c1e2.jpg
+    - https://picbed0521.oss-cn-shanghai.aliyuncs.com/blogpic/79a1ae1ec4f74ee0c4f8f5468523e892.jpg
+    - https://picbed0521.oss-cn-shanghai.aliyuncs.com/blogpic/0a175c01fefe6b016d5da64c655b1cee.jpg
+    - https://picbed0521.oss-cn-shanghai.aliyuncs.com/blogpic/6b5d612e0383e5d64f0777b4b979b002.jpg
+    - https://picbed0521.oss-cn-shanghai.aliyuncs.com/blogpic/734fe530bb4ab8077b550446897727a2.jpg
+    - https://picbed0521.oss-cn-shanghai.aliyuncs.com/blogpic/7be4e5cabc1892f13a8ce4d55cbd787c.jpg
+    - https://picbed0521.oss-cn-shanghai.aliyuncs.com/blogpic/dc256d103a76a7e611093c6040f196ad.jpg
+    - https://picbed0521.oss-cn-shanghai.aliyuncs.com/blogpic/8329fbf20c80cb47e69112360c9d351e.jpg
+    - https://picbed0521.oss-cn-shanghai.aliyuncs.com/blogpic/557c4311ef41166b23b848cd9cc4ea79.jpg
+    - https://picbed0521.oss-cn-shanghai.aliyuncs.com/blogpic/8c09fac433d3d448ca54bbf0c079c59d.jpg
+    - https://picbed0521.oss-cn-shanghai.aliyuncs.com/blogpic/416b331ca8312ea153216646882e9ed9.jpg
+    - https://picbed0521.oss-cn-shanghai.aliyuncs.com/blogpic/f4b8dbf6edada39bca87d0feae1edeac.jpg
+    - https://picbed0521.oss-cn-shanghai.aliyuncs.com/blogpic/d13a1291622bbd20e6b92dd4c9aab2b0.jpg
+    - https://picbed0521.oss-cn-shanghai.aliyuncs.com/blogpic/b728a89478687c0bf8c7f41d3062462b.jpg
+    - https://picbed0521.oss-cn-shanghai.aliyuncs.com/blogpic/c82e6022b30725d0d994fef978ec2948.jpg
+    - https://picbed0521.oss-cn-shanghai.aliyuncs.com/blogpic/fbd897def1737d82803bc185dc431920.jpg
+    - https://picbed0521.oss-cn-shanghai.aliyuncs.com/blogpic/07c3084a53912063e65735a81fa2ceaf.jpg
+    - https://picbed0521.oss-cn-shanghai.aliyuncs.com/blogpic/202409052346494.jpg
+    - https://picbed0521.oss-cn-shanghai.aliyuncs.com/blogpic/202409052347709.jpg
+    - https://picbed0521.oss-cn-shanghai.aliyuncs.com/blogpic/202409052348435.jpg
+    - https://picbed0521.oss-cn-shanghai.aliyuncs.com/blogpic/202409052348184.jpg
+    - https://picbed0521.oss-cn-shanghai.aliyuncs.com/blogpic/202409052348139.jpg
+    - https://picbed0521.oss-cn-shanghai.aliyuncs.com/blogpic/202409052349130.jpg
+    - https://picbed0521.oss-cn-shanghai.aliyuncs.com/blogpic/202409052350034.jpg
+    - https://picbed0521.oss-cn-shanghai.aliyuncs.com/blogpic/202409052350159.jpg
+    - https://picbed0521.oss-cn-shanghai.aliyuncs.com/blogpic/202409052350188.jpg
+    - https://picbed0521.oss-cn-shanghai.aliyuncs.com/blogpic/202409052350711.jpg
+    - https://picbed0521.oss-cn-shanghai.aliyuncs.com/blogpic/202409052351407.jpg
+    - https://picbed0521.oss-cn-shanghai.aliyuncs.com/blogpic/202409052351809.jpg
+    - https://picbed0521.oss-cn-shanghai.aliyuncs.com/blogpic/202409052351863.jpg
+    - https://picbed0521.oss-cn-shanghai.aliyuncs.com/blogpic/202409052352864.jpg
 
 # Replace Broken Images (替換無法顯示的圖片)
 error_img:
@@ -406,12 +438,12 @@ addtoany:
 comments:
   # Up to two comments system, the first will be shown as default
   # Choose: Disqus/Disqusjs/Livere/Gitalk/Valine/Waline/Utterances/Facebook Comments/Twikoo/Giscus/Remark42/Artalk
-  use: # Valine,Disqus
+  use: Twikoo # Valine,Disqus
   text: true # Display the comment name next to the button
   # lazyload: The comment system will be load when comment element enters the browser's viewport.
   # If you set it to true, the comment count will be invalid
-  lazyload: false
-  count: false # Display comment count in post's top_img
+  lazyload: true
+  count: true # Display comment count in post's top_img
   card_post_count: false # Display comment count in Home Page
 
 # disqus
@@ -484,7 +516,7 @@ facebook_comments:
 # Twikoo
 # https://github.com/imaegoo/twikoo
 twikoo:
-  envId:
+  envId: https://hbcom.supdriver.top/
   region:
   visitor: false
   option:
