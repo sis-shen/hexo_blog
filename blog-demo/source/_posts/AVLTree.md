@@ -2,6 +2,7 @@
 title: 手撕AVL树
 date: 2024-08-12 10:55:47
 tags:
+cover: https://picbed0521.oss-cn-shanghai.aliyuncs.com/blogpic/202409230910780.png
 ---
 # AVL树的概念
 

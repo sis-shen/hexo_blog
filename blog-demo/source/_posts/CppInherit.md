@@ -3,6 +3,7 @@ layout: hexo
 title: C++继承
 date: 2024-09-02 15:26:20
 tags: C++ 继承
+cover: https://picbed0521.oss-cn-shanghai.aliyuncs.com/blogpic/202409230918235.png
 ---
 # 继承的概念及定义
 

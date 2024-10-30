@@ -2,6 +2,7 @@
 title: 进程间通信--匿名管道与命名管道
 date: 2024-08-02 21:16:14
 tags: Linux
+cover: https://picbed0521.oss-cn-shanghai.aliyuncs.com/blogpic/202409230859852.png
 ---
 
 # 什么是管道文件

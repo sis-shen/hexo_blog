@@ -2,6 +2,7 @@
 title: Linux文件系统
 date: 2024-07-26 09:49:27
 tags: Linux
+cover: https://picbed0521.oss-cn-shanghai.aliyuncs.com/blogpic/202409230833286.png
 ---
 # 文件系统的组织方式
 

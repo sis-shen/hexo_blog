@@ -2,6 +2,7 @@
 title: 初识动静态库
 date: 2024-07-08 09:10:13
 tags: 动态库 静态库
+cover: https://picbed0521.oss-cn-shanghai.aliyuncs.com/blogpic/202409230827702.png
 ---
 
 # 静态库(.a)

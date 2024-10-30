@@ -209,10 +209,10 @@ int main()
 
 + 且`scanf(stdin,format,...)`和`printf(format,...)`效果一样
 
-## fegts 获取一行
+## fgets 获取一行
 `char * fgets (char *str, int num, FILE *stream );`
 ### 行为
-`fegts`会一直读取直到`换行符`或`EOF文件结尾`结束读取，但`换行符`作为**非法**字符不会被拷贝到形参`str`中
+`fgets`会一直读取直到`换行符`或`EOF文件结尾`结束读取，但`换行符`作为**非法**字符不会被拷贝到形参`str`中
 
 + 字符串结尾的`\0`会被自动添加,且**计算**在读入的**最大字符数**
 + `fgets`和`gets`有很大差别，它需要**指定**最大的读入字符数

@@ -2,6 +2,7 @@
 title: 进程间通信
 date: 2024-08-02 21:46:55
 tags:
+cover: https://picbed0521.oss-cn-shanghai.aliyuncs.com/blogpic/202409230856421.png
 ---
 
 本篇博客更偏向于总括和导航,部分概念更细致的介绍将内嵌链接在文章中

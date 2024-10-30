@@ -40,7 +40,8 @@ social:
 # --------------------------------------
 
 # Favicon（網站圖標）
-favicon: /img/favicon.png
+favicon: 
+  img: https://picbed0521.oss-cn-shanghai.aliyuncs.com/blogpic/202410211504016.jpg
 
 # Avatar (頭像)
 avatar:
@@ -121,6 +122,20 @@ cover:
     - https://picbed0521.oss-cn-shanghai.aliyuncs.com/blogpic/202409052351809.jpg
     - https://picbed0521.oss-cn-shanghai.aliyuncs.com/blogpic/202409052351863.jpg
     - https://picbed0521.oss-cn-shanghai.aliyuncs.com/blogpic/202409052352864.jpg
+    - https://picbed0521.oss-cn-shanghai.aliyuncs.com/blogpic/202410191621039.jpg
+    - https://picbed0521.oss-cn-shanghai.aliyuncs.com/blogpic/202410191622764.jpg
+    - https://picbed0521.oss-cn-shanghai.aliyuncs.com/blogpic/202410191622320.jpg
+    - https://picbed0521.oss-cn-shanghai.aliyuncs.com/blogpic/202410191622455.jpg
+    - https://picbed0521.oss-cn-shanghai.aliyuncs.com/blogpic/202410191622975.jpg
+    - https://picbed0521.oss-cn-shanghai.aliyuncs.com/blogpic/202410191623429.jpg
+    - https://picbed0521.oss-cn-shanghai.aliyuncs.com/blogpic/202410191623428.jpg
+    - https://picbed0521.oss-cn-shanghai.aliyuncs.com/blogpic/202410191624030.jpg
+    - https://picbed0521.oss-cn-shanghai.aliyuncs.com/blogpic/202410191624607.jpg
+    - https://picbed0521.oss-cn-shanghai.aliyuncs.com/blogpic/202410191624853.jpg
+    - https://picbed0521.oss-cn-shanghai.aliyuncs.com/blogpic/202410191624174.jpg
+    - https://picbed0521.oss-cn-shanghai.aliyuncs.com/blogpic/202410191624909.jpg
+    - https://picbed0521.oss-cn-shanghai.aliyuncs.com/blogpic/202410191625985.jpg
+    - https://picbed0521.oss-cn-shanghai.aliyuncs.com/blogpic/202410191626076.jpg
 
 # Replace Broken Images (替換無法顯示的圖片)
 error_img:

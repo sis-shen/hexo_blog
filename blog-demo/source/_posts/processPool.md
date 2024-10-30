@@ -2,6 +2,7 @@
 title: 【Linux】简易进程池
 date: 2024-08-02 20:02:48
 tags:
+cover: https://picbed0521.oss-cn-shanghai.aliyuncs.com/blogpic/202409230843742.png
 ---
 
 # 原理

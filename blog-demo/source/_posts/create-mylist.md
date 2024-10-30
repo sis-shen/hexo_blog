@@ -6,6 +6,9 @@ cover: https://picbed0521.oss-cn-shanghai.aliyuncs.com/blogpic/Date.jpg
 ---
 
 前置博客:**[从构建一个Date类入门C++类与对象](https://www.supdriver.top/2023/12/07/cpp-class/ '点击跳转')**
+设计模式介绍:*TODO*
+
+`Iterator`迭代器实际上也是一种设计模式，它提供了一种方法**顺序访问**一个聚合对象中**各个元素**
 
 >下面先迅速地搓一个`list`类
 ```C++

@@ -1,7 +1,8 @@
 ---
-title: 手撕红黑树 并封装map和set
+title: 手撕红黑树
 date: 2024-09-03 08:21:33
 tags:
+cover: https://picbed0521.oss-cn-shanghai.aliyuncs.com/blogpic/202409230913395.png
 ---
 
 # 红黑树

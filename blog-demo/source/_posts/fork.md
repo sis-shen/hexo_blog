@@ -22,7 +22,7 @@ pid_t id = fork();
 + `id < 0` fork()失败
 
 ## 分流
-https://picbed0521.oss-cn-shanghai.aliyuncs.com/blogpic/PixPin_2024-07-09_13-00-38.png
+![](https://picbed0521.oss-cn-shanghai.aliyuncs.com/blogpic/PixPin_2024-07-09_13-00-38.png)
 
 利用父子进程中`fork()`返回值的不同，可以用`if...else...`进行分流，让父子进程执行不同的代码
 
@@ -34,7 +34,7 @@ https://picbed0521.oss-cn-shanghai.aliyuncs.com/blogpic/PixPin_2024-07-09_13-00-
 + 添加子进程到**系统进程列表**当中
 + `fork`返回，开始调度器调度
 
-https://picbed0521.oss-cn-shanghai.aliyuncs.com/blogpic/PixPin_2024-07-09_18-54-41.png
+![](https://picbed0521.oss-cn-shanghai.aliyuncs.com/blogpic/PixPin_2024-07-09_18-54-41.png)
 
 当一个进程调用fork之后，就有一对二进制**代码相同**的父子进程。而且它们都运行到相同的地方。但每个进程都可以**独立**地继续运行代码,并按代码分流至不同的代码段
 
@@ -45,7 +45,7 @@ https://picbed0521.oss-cn-shanghai.aliyuncs.com/blogpic/PixPin_2024-07-09_18-54-
 
 但当父子进程中有一方发生写入行为时，就会触发`写时拷贝`，此时物理内存中发生拷贝行为，但只拷贝进程映射的`数据段`，而由于**不发生进程替换时**父子进程的代码段一定相同，物理内存中,`代码段`映射部分并不发生拷贝
 
-https://picbed0521.oss-cn-shanghai.aliyuncs.com/blogpic/PixPin_2024-07-09_19-38-58.png
+![](https://picbed0521.oss-cn-shanghai.aliyuncs.com/blogpic/PixPin_2024-07-09_19-38-58.png)
 
 
 # 进程退出
@@ -86,7 +86,7 @@ https://picbed0521.oss-cn-shanghai.aliyuncs.com/blogpic/PixPin_2024-07-09_19-38-
 2. 关闭所有打开的流，所有的**缓存数据**均被写入
 3. 调用`_exit`
 
-https://picbed0521.oss-cn-shanghai.aliyuncs.com/blogpic/PixPin_2024-07-09_22-10-26.png
+![](https://picbed0521.oss-cn-shanghai.aliyuncs.com/blogpic/PixPin_2024-07-09_22-10-26.png)
 
 `return`退出： 执行`return n`等同于执行`exit(n)`
 
