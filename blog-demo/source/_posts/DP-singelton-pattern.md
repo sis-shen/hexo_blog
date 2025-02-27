@@ -24,8 +24,8 @@ private:
 	static T _eton;
 private:
 	Singleton() {}//私有化构造函数
-	~Singleton() {}
 public:
+	~Singleton() {}
 	Singleton(const Singleton&) = delete;//删除拷贝构造
 	Singleton& operator=(const Singleton&) = delete;//删除赋值运算重载
 	static T& getInstance()

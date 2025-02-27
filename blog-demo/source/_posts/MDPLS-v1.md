@@ -144,6 +144,9 @@ tags:
 ---
 
 # 代码设计
+## UML类图设计
+
+![](https://picbed0521.oss-cn-shanghai.aliyuncs.com/blogpic/202411050824076.jpg)
 
 ## 作用域的设计
 为了防止命名冲突，以及提示整个项目的完整性和功能性等，将所有的相关代码封装在`suplog`命名空间中，其中`log`表示功能，`sup`为作者自定义的名称，以提高其唯一性
@@ -371,7 +374,7 @@ supdriver@ALi-cloud-Linux-2-2G:~/codes/Asynchrinous-Logging-System$
 namespace suplog{
     struct LogMsg
     {
-        //声明一个全局且唯一的指针
+        //声明一个智能指针
         using ptr = std::shared_ptr<LogMsg>;
         std::string _name;  //日志器名称
         std::string _file;  //文件名
@@ -594,7 +597,7 @@ namespace suplog{
     //......上面的代码略...
     /*===============END==============*/
 
-      class Formatter
+    class Formatter
     {
     public:
         using ptr = std::shared_ptr<Formatter>;
@@ -809,7 +812,7 @@ int main()
     + 日志文件在⼤于 1GB 的时候会更换新的⽂件
     + 每天定点滚动⼀个⽇志⽂件
 
-本项目选择基于 文件大小 的潘墩滚动生成新的文件
+本项目选择基于 文件大小 的判断滚动生成新的文件
 
 > sink.hpp
 
@@ -1170,6 +1173,7 @@ namespace suplog{
             msg.assign(buf,len);
             free(buf);//释放空间
         }
+        
 
         //LogMsg(name, file, line, payload, level)
         LogMsg logmsg(_name,file,line,std::move(msg),level);

@@ -40,8 +40,8 @@ social:
 # --------------------------------------
 
 # Favicon（網站圖標）
-favicon: 
-  img: https://picbed0521.oss-cn-shanghai.aliyuncs.com/blogpic/202410211504016.jpg
+favicon: https://picbed0521.oss-cn-shanghai.aliyuncs.com/blogpic/sup_avator.webp
+
 
 # Avatar (頭像)
 avatar:
@@ -59,6 +59,9 @@ index_img:
 default_top_img: https://picbed0521.oss-cn-shanghai.aliyuncs.com/blogpic/train.webp
 # The banner image of archive page
 archive_img: 
+
+# 主页面卡片样式
+index_card_style: multicard # multicard | slidecard
 
 # If the banner of tag page not setting, it will show the top_img
 # note: tag page, not tags page (子標籤頁面的 top_img)
@@ -168,7 +171,7 @@ post_meta:
 # 3: auto_excerpt (default)
 # false: do not show the article introduction
 index_post_content:
-  method: 3
+  method: 2
   length: 500 # if you set method to 2 or 3, the length need to config
 
 # anchor
@@ -317,7 +320,7 @@ aside:
 # 訪問人數
 busuanzi:
   site_uv: false  #总访客数
-  site_pv: false  #总访问量
+  site_pv: true  #总访问量
   page_pv: true  #总阅读量
 
 # Time difference between publish date and now (網頁運行時間)
@@ -740,6 +743,10 @@ canvas_nest:
   count: 99 # the number of lines, default: 99.
   mobile: false
 
+# 星空特效
+canvas:
+  enable: true
+
 # Mouse click effects: fireworks (鼠標點擊效果: 煙火特效)
 fireworks:
   enable: false
@@ -954,8 +961,16 @@ css_prefix: true
 inject:
   head:
     - <link rel="stylesheet" href="/css/custom.css" media="defer" onload="this.media='all'">
+
+    #宇宙星空特效
+    - <link rel="stylesheet" href="/css/universe.css">
     # - <link rel="stylesheet" href="/xxx.css">
   bottom:
+    - <script async src="/js/title.js"></script>
+
+    #宇宙星空特效
+    - <canvas id="universe"></canvas>
+    - <script defer src="/js/universe.js"></script>
     # - <script src="xxxx"></script>
 
 # CDN

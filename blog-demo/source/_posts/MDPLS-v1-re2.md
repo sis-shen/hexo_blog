@@ -1,5 +1,5 @@
 ---
-title: 【补丁更新v1.2】同步&异步⽇志系统的问题优化与异常处理
+title: 【补丁更新v1.2~1.3】同步&异步⽇志系统的问题优化与异常处理
 date: 2024-10-24 22:58:25
 tags:
 ---
@@ -138,3 +138,51 @@ private:
 
 经过如上处理，黏包问题便顺利解决了。
 # 添加异常处理
+
+这里就简单处理了，我们直接继承一个`STL库`里的`runtime_error`类来封装成自己的异常类
+
+> logexception.hpp
+```C++
+#include <stdexcept>
+#include <string>
+
+namespace suplog
+{
+    class LogException : public std::runtime_error
+    {
+    public:
+        LogException(const std::string &msg = "") : runtime_error(msg) {}
+    };
+}
+```
+类的设计目前就这么简单，如果要添加功能，会在后续的更新中继续修改
+
+接下来是逐个把`assert`替换掉并在合适的地方加入`try...catch`
+
+## sink.hpp
+
+![](https://picbed0521.oss-cn-shanghai.aliyuncs.com/blogpic/202411060924126.webp)
+
+![](https://picbed0521.oss-cn-shanghai.aliyuncs.com/blogpic/202411060929336.webp)
+
+![](https://picbed0521.oss-cn-shanghai.aliyuncs.com/blogpic/202411060931997.webp)
+
+![](https://picbed0521.oss-cn-shanghai.aliyuncs.com/blogpic/202411060932714.webp)
+
+## formatter.hpp
+
+![](https://picbed0521.oss-cn-shanghai.aliyuncs.com/blogpic/202411060935578.webp)
+
+## buffer.hpp
+
+![](https://picbed0521.oss-cn-shanghai.aliyuncs.com/blogpic/202411060954477.webp)
+
+![](https://picbed0521.oss-cn-shanghai.aliyuncs.com/blogpic/202411060955175.webp)
+
+## logger.hpp
+
+![](https://picbed0521.oss-cn-shanghai.aliyuncs.com/blogpic/202411061000902.webp)
+
+![](https://picbed0521.oss-cn-shanghai.aliyuncs.com/blogpic/202411061902822.webp)
+
+![](https://picbed0521.oss-cn-shanghai.aliyuncs.com/blogpic/202411061902868.webp)

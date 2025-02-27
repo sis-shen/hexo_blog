@@ -1,8 +1,10 @@
 ---
-title: C++连接MySQL常见接口/类介绍
+title: MySQL Connector/C++常见接口/类介绍
 date: 2024-10-22 15:02:10
 tags:
 ---
+当我们有用C++程序连接`MySQL`数据库并执行`SQL`语句时，往往要用到相关的库，这里使用的是`MySQL`官方提供的`Connector/C++`库，为了更好地使用库里的内容，我们先来熟悉一下里面常用的接口和类
+
 # MySQL准备
 为了便于测试，我们专门创建一个用于测试的用户和数据库，并给予相关权限
 
@@ -162,6 +164,7 @@ std::unique_ptr<sql::Connection> con(driver->connect("tcp://127.0.0.1:3306", "co
 std::unique_ptr<sql::Statement> stmt(con->createStatement());
 ```
 ## sql::Statement
+**注：必须包含头文件`#include <cppconn/statement.h>`**
 
 主要用于执行静态 `SQL` 语句,通过调用成员函数,并传入一个字符串
 
@@ -188,12 +191,12 @@ std::unique_ptr<sql::ResultSet> res(stmt->executeQuery("SELECT VERSION()"));
   + `bool next()`
   + 将游标从当前位置向前移动一行。如果新的当前行有效，则返回 `true`；如果没有更多的行，则返回 `false`。
 + `getString`: 
-  + `SQLString getString(uint32_t columnIndex) const`
+  + `SQLString getString(uint32_t columnIndex) const`  *每一列从`1`开始*
   + `SQLString getString(const sql::SQLString& columnLabel) const`
   + *下面的两种get方法均有两种重载*
   + 获取当前行指定列的 std::string 值。
-+ `getInt`: 获取当前行指定列的 int 值。
-+ `getDouble`: 获取当前行指定列的 double 值。
++ `getInt`: 获取当前行指定列的 int 值。 *每一列从`1`开始*
++ `getDouble`: 获取当前行指定列的 double 值。 *每一列从`1`开始*
 + `getRow`
   + `size_t getRow() const`
   + 获取行号，从`1`开始
@@ -212,7 +215,7 @@ while (res->next()) {
 
 这里再简单介绍一下`getMetaData`获得的`ResultSetMetaData`对象提供了哪些接口，可以获得哪些信息
 
-**注意**⚠️,不能用只能指针储存`sql:ResultSetMetaData*`指针,因为它的析构函数是`portected`的，由别的对象自动释放，而智能指针没有权限自动释放。
+**注意**⚠️,不能用智能指针储存`sql:ResultSetMetaData*`指针,因为它的析构函数是`portected`的，由别的对象自动释放，而智能指针没有权限自动释放。
 
 它的源码及本文作者注释如下:
 ```C++
