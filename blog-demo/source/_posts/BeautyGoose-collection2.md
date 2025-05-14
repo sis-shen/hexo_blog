@@ -1,27 +1,30 @@
 ---
-title: C++项目】v2.3美鹅外卖-总集介绍博客
+title: C++项目】v2.6美鹅外卖-总集介绍博客
 date: 2025-02-23 09:55:40
 tags:
+top: 10
 ---
+项目连接: [https://github.com/sis-shen/BeautyGoose](https://github.com/sis-shen/BeautyGoose)
+
 # 项目介绍
-为客户提供一个C/S架构的外卖平台，使用Qt框架和cpp-httplib 等模块实现其业务功能。能够服务消费者，商家和管理员的使用需求，目前支持的客户端平台为Windows平台。服务端平台只需支持Docker即可
+个人独立设计和多轮迭代开发的C/S架构开源项目。按照业务功能进行**解耦合**和**分层**，形成良好的**层次结构**。服务端采用高并发的**应用服务器集群架构**,使用Drogon作为HTTP框架。代码实现自定义的数据库客户端和Redis客户端，保持代码的易读性和易维护性。同时使用**Docker容器编排**技术完成应用集群构建和数据库服务部署。客户端包含QT实现的18个不同的交互界面，有完善的页面流转逻辑。
 
 使用的技术点有:
 
 + QT界面框架
 + Json序列化与反序列化
-+ cpp-httplib库
++ Drogon网络库
 + MySQL connector/c++
 + Redis 缓存层
-+ nginx 负载均衡
++ Nginx 负载均衡
 + Docker容器与镜像管理技术
 
 ## 运行环境
-*当前版本v2.5*
+*当前版本v2.6*
 
 客户端: windows 11
 
-服务端: 阿里云ECS云服务器 ubuntu 22.04
+服务端: 支持Docker的任意平台
 ## 需求分析
 
 ### 用户需求
@@ -46,68 +49,39 @@ tags:
 
 ### 用例图
 ![](https://picbed0521.oss-cn-shanghai.aliyuncs.com/blogpic/202501171350578.webp)
+## 与其它系统的接口
 
+### 线上支付服务
+因为非实际生产的项目，因此不接入第三方支付接口
+
+### 数据库服务
+本平台使用`MySQL 8.0`提供的数据库管理服务,使用相关的API构建自定义客户端
+
+### Redis服务
+本平台使用`Redis 7.2.4`提供的内存级数据库服务，使用相关的API构建自定义客户端
 
 ## 功能需求
 根据用户的需求，我们提出更具体，更偏向实现的功能需求
 
 *阅读提示：点击右侧目录可以跳转*
 
-1. 用户注册功能
-    + 用户可以使用唯一的***账号名和手机号**和进行账号注册
-
-2. 用户登录功能
-    + 用户可以使用**账号名或手机号**进行账号登录
-
-3. 商家菜品注册功能
-    + 商家可以使用菜品注册功能来注册新的菜品
-
-4. 商家菜品查看功能
-    + 商家可以看到自己的所有菜品列表，也能够看到某个菜品的详情
-
-5. 商家菜品修改功能
-    + 商家可以修改菜品的信息，也可以删除菜品
-
-6. 商家订单查看功能
-    + 商家能够看到自己的订单列表，也可以看到某个订单的详情
-
-7. 商家订单处理功能
-    + 商家能够选择接单或拒单
-
-8. 消费者查看菜品功能
-    + 消费者可以看到所有菜品列表，也可以看到某一个菜品的详情
-
-9. 消费者购物车添加功能
-    + 消费者能够将菜品添加到对应商家的购物车中
-
-10. 消费者查看购物车功能
-    + 消费者能够看到所有商家的购物车列表
-
-11. 消费者订单生成功能
-    + 消费者能够将指定的购物车生成为订单
-
-12. 消费者第三方支付功能
-    + 消费者能够使用第三方支付订单
-
-13. 消费者订单支付功能
-    + 消费者能够支付订单并支付完成的订单被商家看到
-
-14. 消费者提升优惠等级功能
-    + 消费者能够看到自己的优惠等级，并通过购买VIP的方式提升优惠等级
-
-15. 管理员日志查看功能
-    + 使用管理员账户登录后，可以看到所有的销售日志
-
-## 与其它系统的接口
-
-### 数据源
-本平台仅主要作为商家和消费者交互的平台，因此绝大部分数据由用户产生，而平台本身只产生日志数据
-
-### 线上支付服务
-本平台只提用于接入第三方支付的接口，而不自己实现任何的支付服务。因此所有的支付服务均由第三方系统提供
-
-### 数据库服务
-本平台依托于`MySQL 8.0`提供的数据库管理服务,只实现与其交互的接口。
+| 功能点 | 描述 |
+| --- | ---- | 
+|用户注册功能 | 用户可以使用唯一的***账号名和手机号**和进行账号注册| 
+|用户登录功能 | 用户可以使用**账号名或手机号**进行账号登录 |
+|商家菜品注册功能 |商家可以使用菜品注册功能来注册新的菜品|
+|商家菜品查看功能 | 商家可以看到自己的所有菜品列表，也能够看到某个菜品的详情 |
+|商家菜品修改功能 |商家可以修改菜品的信息，也可以删除菜品|
+|商家订单查看功能 |商家能够看到自己的订单列表，也可以看到某个订单的详情|
+| 商家订单处理功能 | 商家能够选择接单或拒单 |
+| 消费者查看菜品功能 | 消费者可以看到所有菜品列表，也可以看到某一个菜品的详情 |
+| 消费者购物车添加功能 | 消费者能够将菜品添加到对应商家的购物车中 |
+|消费者查看购物车功能 | 消费者能够看到所有商家的购物车列表 |
+| 消费者订单生成功能 |  消费者能够将指定的购物车生成为订单 | 
+| 消费者第三方支付功能 | 消费者能够使用第三方支付订单 | 
+| 消费者订单支付功能 | 消费者能够支付订单并支付完成的订单被商家看到 |
+| 消费者提升优惠等级功能 | 消费者能够看到自己的优惠等级，并通过购买VIP的方式提升优惠等级 |
+| 管理员日志查看功能 | 使用管理员账户登录后，可以看到所有的销售日志 | 
 
 ## 软件需求规格
 
@@ -118,7 +92,7 @@ tags:
 ![](https://picbed0521.oss-cn-shanghai.aliyuncs.com/blogpic/202501171433499.webp)
 
 + 应用数据架构图
-![](https://picbed0521.oss-cn-shanghai.aliyuncs.com/blogpic/202501191456115.webp)
+![](https://picbed0521.oss-cn-shanghai.aliyuncs.com/blogpic/202505141002248.webp)
 
 本版本采用在开发机上部署服务端，云服务器上部署数据库，并使用云服务器提供内网穿透服务的方式为客户端提供服务
 ### 系统层次结构
@@ -161,9 +135,7 @@ tags:
 1. 日志查询功能             adminHistoryLog
 
 ## 数据库设计
-本项目采用MySQL 8.0.40-0ubuntu0.22.04.1
-
-目前按项目初期的小访问量设计的数据库，因此只使用单一的数据库存储所有文件，表按数据对象的类型划分。
+本项目采用Docker镜像`mysql:8.0`
 
 ### 数据库文件和连接账户
 #### 建数据库
@@ -294,29 +266,24 @@ create table historyDish(
 
 服务端的开发环境和部署环境均完成了**操作系统平台迁移**。从`Windows 11`转移到了`Ubuntu 22.04`云服务器上。
 
-## 第三方库依赖更新
+## 第三方库依赖更改
 
 1. **完全抛弃QT框架**
 2. 新增`jsoncpp`替代`QJson`
 
-## 部署升级
-
-1. 引入`Dockerfile`完成镜像自动构建
-2. 使用`docker-compose.yml`自动完成服务编排和部署启动,使单机开发测试更简单
 
 # 服务端详细设计
 
 ## 版本信息
-**当前版本**: v2.5 Redis缓存层更新
+**当前版本**: v2.6网络框架替换更新
 
 当前服务器使用了如下技术栈:
 + `MySQL`数据库服务：由`MySQL 8.0`提供数据持久化服务
 + `MySQL API`服务: 由`MySQL Connector/C++ 7`提供原生`API`,并在开发中封装成数据库对象及其接口
 + `序列化与反序列化`服务: 由`jsoncpp`库提供对象的序列化与反序列化
-+ `HTTP短链接通信`服务 : 由开源项目`cpp-httplib`提供的单头文件库提供简单易用的HTTP服务
++ `Drogon`:一个开源的现代网络库，提供高版本C++下高效的网络服务
 + `gflags`命令行参数解析 ：由谷歌的开源项目`gflags`提供命令行解析服务
 + `spdlog`日志输出服务 ：由开源项目`spdlog`提供的异步、高速、易于配置的日志输出服务
-+ 数据库客户端守护线程保证连接的健壮性
 + `nginx`反向代理，构建应用服务集群架构
 + `Redis`提供分布式数据缓存服务
 
@@ -380,11 +347,8 @@ create table historyDish(
 | Key | Value |
 | ---- | --- |
 | 开发平台 | 阿里ECS服务器 Ubuntu 22.04 | 
-| MySQL Connector/C++ 版本 | Connector 7 | 
 | C++语法标准 | C++17 | 
 
-## 文件结构一览
-![](https://picbed0521.oss-cn-shanghai.aliyuncs.com/blogpic/202503111533646.webp)
 
 ## 编写 docker-compose.yml
 在当前架构下，我们要运行如下容器
@@ -622,7 +586,6 @@ networks:  # 新增网络定义
 ```
 
 # 服务端源码编写
-除了`httplib.h`来自`cpp-httplib`库外，剩下的源代码文件均需要我们编写
 
 ## CoreData.hpp
 核心数据结构、工具函数和序列化与反序列化函数均实现在这个头文件中
@@ -932,6 +895,87 @@ namespace btyGoose{
 ```
 
 ## logger.hpp
++ 我们需要封装spdlog的代码使之适配于项目的日志输出，同时简化使用难度
++ 为了测量延迟，我们需要使用计时功能，为此我们把相关的功能封装进计时器类内，简化使用  --*这段代码位于`logger.hpp`中*
+
+logger.hpp
+```C++
+#pragma once
+#include <spdlog/spdlog.h>
+#include <spdlog/sinks/stdout_color_sinks.h>
+#include <spdlog/sinks/basic_file_sink.h>
+#include <spdlog/async.h>
+#include <iostream>
+
+namespace btyGoose{
+extern std::shared_ptr<spdlog::logger> g_default_logger;
+void init_logger(bool mode, const std::string &file, int32_t level);
+
+#define SUP_LOG_TRACE(format, ...) btyGoose::g_default_logger->trace(std::string("[{}:{}] ") + format, __FILE__, __LINE__, ##__VA_ARGS__)
+#define SUP_LOG_DEBUG(format, ...) btyGoose::g_default_logger->debug(std::string("[{}:{}] ") + format, __FILE__, __LINE__, ##__VA_ARGS__)
+#define SUP_LOG_INFO(format, ...) btyGoose::g_default_logger->info(std::string("[{}:{}] ") + format, __FILE__, __LINE__, ##__VA_ARGS__)
+#define SUP_LOG_WARN(format, ...) btyGoose::g_default_logger->warn(std::string("[{}:{}] ") + format, __FILE__, __LINE__, ##__VA_ARGS__)
+#define SUP_LOG_ERROR(format, ...) btyGoose::g_default_logger->error(std::string("[{}:{}] ") + format, __FILE__, __LINE__, ##__VA_ARGS__)
+#define SUP_LOG_FATAL(format, ...) btyGoose::g_default_logger->critical(std::string("[{}:{}] ") + format, __FILE__, __LINE__, ##__VA_ARGS__)
+
+
+class ScopedTimer
+{
+public:
+    ScopedTimer(const std::string&name)
+    :_name(name),_start(std::chrono::high_resolution_clock::now())
+    {
+        _prev = _start;
+    }
+
+    int64_t staged()
+    {
+        auto stage = std::chrono::high_resolution_clock::now();
+        auto ret = stage - _prev;
+        _prev = stage;
+        return (std::chrono::duration_cast<std::chrono::microseconds>(ret)).count();
+    }
+        
+    ~ScopedTimer() {
+        auto end = std::chrono::high_resolution_clock::now();
+        auto duration = std::chrono::duration_cast<std::chrono::microseconds>(end-_start);
+        SUP_LOG_DEBUG("计时器 {} 存活时间: {} μs",_name,duration.count());
+    }
+
+private:
+    std::string _name;
+    std::chrono::time_point<std::chrono::high_resolution_clock> _start;
+    std::chrono::time_point<std::chrono::high_resolution_clock> _prev;
+};
+}
+```
+
+logger.cpp
+```C++
+#include "logger.hpp"
+
+namespace btyGoose{
+std::shared_ptr<spdlog::logger> g_default_logger;
+void init_logger(bool mode, const std::string &file, int32_t level)
+{
+    if (mode == false) {
+        //如果是调试模式，则创建标准输出日志器，输出等级为最低
+        g_default_logger = spdlog::stdout_color_mt("default-logger");
+        g_default_logger->set_level(spdlog::level::level_enum::trace);
+        g_default_logger->flush_on(spdlog::level::level_enum::trace);
+        g_default_logger->set_pattern("[%n][%H:%M:%S][%t]%^[%-8l]%$%v");//标记颜色的起始位置
+    }else {
+        //否则是发布模式，则创建文件输出日志器，输出等级根据参数而定
+        g_default_logger = spdlog::basic_logger_mt("default-logger", file);
+        g_default_logger->set_level((spdlog::level::level_enum)level);
+        g_default_logger->flush_on((spdlog::level::level_enum)level);
+        g_default_logger->set_pattern("[%n][%H:%M:%S][%t][%-8l]%v");
+    }
+    
+}
+}
+```
+
 
 ## DatabaseClient.hpp
 我们将所有与数据库相关的接口封装到`DatabaseClient`类中，在抽象层次中单独封装一层，为`HTTP服务层`提供简单易用的数据库服务。
@@ -1243,88 +1287,189 @@ void RedisClient::setOrderDishListJson(const string&order_id,const string& dish_
 
 
 
-## HTTPServer.h
-这里就是实现服务器的主要业务功能的地方,有如下特点
+## Web API的注册和实现
+因为我们使用了`Drogon`框架，所以注册服务时需要预处理一下
 
-+ `单例模式`:全局范围只运行一个`HTTPServer`实例
-+ 提供工具函数： 这里也提供了一点序列化和反序列化函数
+### 创建控制器类
+我们需要先创建控制器类，在里面实现业务代码
+```shell
+# 当前位置:BeautyGoose/Server/server/src
+mkdir controllers && cd controllers
+drogon_ctl create controller -h btyGoose::TestCtrl
+drogon_ctl create controller -h btyGoose::AccountCtrl
+drogon_ctl create controller -h btyGoose::ConsumerCtrl
+drogon_ctl create controller -h btyGoose::MerchantCtrl
+drogon_ctl create controller -h btyGoose::AdminCtrl
 
-*这边只给出头文件，具体实现的.cpp文件就不展示了*
+```
 
-> HTTPServer.h
+### 解决共享Redis和MySQL等连接资源的问题
+因为各个控制器共用同样的数据库服务，所以我们需要有人负责统一提供服务，这个角色由`SharedResources.h`中的`SR`承担
+
 ```C++
 #pragma once
-#include "httplib.h"
-#include "DatabaseClient.hpp"
-using std::string;
-using std::vector;
+#include "../DatabaseClient.hpp"
+#include "../RedisClient.hpp"
+#include "../CoreData.hpp"
+#include <drogon/HttpController.h>
+#include "../logger.hpp"
+
 namespace btyGoose
 {
+    //SharedResources
+    class SR
+    {
+    private:
+        SR(){};
+        SR(const SR&) =delete;
+        SR operator=(const SR&) = delete;
+    public:
+        static SR& ins()
+        {
+            static SR sr;
+            return sr;
+        }
 
-class HTTPServer
+        void setDB(std::shared_ptr<DatabaseClient>& ptr)
+        {
+            // LOG_TRACE("HTTPServer: 开始初始化db");
+            _db = ptr;
+        }
+
+        void setRedis(std::shared_ptr<RedisClient>&ptr)
+        {
+            _redis = ptr;
+        }
+
+        bool checkRedisOrderListExist(const data::Order &order)
+        {
+            bool has_consumer = _redis->hasOrderListByUserId(order.consumer_id);
+            bool has_merchant = _redis->hasOrderListByUserId(order.merchant_id);
+
+            if (has_consumer && has_merchant)
+                return true;
+            if (!has_consumer)
+            {
+                auto order_list = _db->getOrderListByConsumer(order.consumer_id);
+                _redis->setOrderList(order_list);
+                _redis->setOrderListByIdDone(order.consumer_id);
+            }
+            if (!has_merchant)
+            {
+                auto dish_list = _db->getOrderListByMerchant(order.merchant_id);
+                _redis->setOrderList(dish_list);
+                _redis->setOrderListByIdDone(order.merchant_id);
+            }
+            return false;
+        }
+
+        const std::shared_ptr<DatabaseClient> db(){return _db;}
+        const std::shared_ptr<RedisClient> redis(){return _redis;}
+    private:
+        std::shared_ptr<DatabaseClient> _db;
+	    std::shared_ptr<RedisClient> _redis;
+    };
+}
+```
+
+### 注册路由和实现业务代码
+我们终于可以开始注册路径与回调函数的关系，以及实现业务代码了,接下来的操作都与`Controller`控制器类的子类有关，下面给出一个头文件中声明业务函数和绑定路径的示例头文件
+
+btyGoose_MerchantCtrl.h
+```C++
+#pragma once
+
+#include <drogon/HttpController.h>
+#include "SharedResources.h"
+
+using namespace drogon;
+
+namespace btyGoose
 {
-	class HTTPException
-	{
-	private:
-		string message;
-	public:
-		HTTPException(const string& msg = "a problem")
-			:message(msg)
-		{}
+  class MerchantCtrl : public drogon::HttpController<MerchantCtrl>
+  {
+  public:
+    MerchantCtrl()
+    {
+      redis = SR::ins().redis();
+      db = SR::ins().db();
+    }
+    METHOD_LIST_BEGIN
+    ADD_METHOD_TO(MerchantCtrl::merchantDishInfoDebug,"/debug/merchant/dish/info",Post);
+    ADD_METHOD_TO(MerchantCtrl::merchantDishList,"/merchant/dish/list",Post);
+    ADD_METHOD_TO(MerchantCtrl::merchantDishRegister,"/merchant/dish/register",Post);
+    ADD_METHOD_TO(MerchantCtrl::merchantDishInfo,"/merchant/dish/info",Post);
+    ADD_METHOD_TO(MerchantCtrl::merhcnatDishUpdate,"/merchant/dish/update",Post);
+    ADD_METHOD_TO(MerchantCtrl::merhcnatDishDel,"/merchant/dish/del",Post);
+    ADD_METHOD_TO(MerchantCtrl::merhcnatOrderList,"/merchant/order/list",Post);
+    ADD_METHOD_TO(MerchantCtrl::merhcnatOrderDetailDishList,"/merchant/order/detail/dishlist",Post);
+    ADD_METHOD_TO(MerchantCtrl::merhcnatOrderAccept,"/merchant/order/accept",Post);
+    ADD_METHOD_TO(MerchantCtrl::merchantOrderReject,"/merchant/order/reject",Post);
 
-		string what()const {
-			return message;
-		}
-	};
-private: 
-	HTTPServer();//单例模式化
-	HTTPServer(const HTTPServer&) = delete;
-	HTTPServer operator=(const HTTPServer&) =delete;
+    METHOD_LIST_END
+    void merchantDishInfoDebug(const HttpRequestPtr &req, std::function<void(const HttpResponsePtr &)> &&callback);
 
-	static HTTPServer* _ins;
-public:
-	static HTTPServer* getInstance()
-	{
-		if(_ins == nullptr)
-		{
-			_ins = new HTTPServer();
-		}
-
-		return _ins;
-	}
-	// void initDB(const string&_user,const string&_password,const string&_host,const string&_port,const string&_database,const std::chrono::seconds _reconnect_interval);
-	void setDB(std::shared_ptr<DatabaseClient>& ptr);
-	void init(const std::string&ip,const uint32_t port);
-
-	void start();
-
-	void initTestAPI();
-	void initAccountAPI();
-	bool AuthenticateAuthCode(const string& phone,const string&auth_code);	//这里留着接入第三方API
-	void initConsumerAPI();
-	void initMerchantAPI();
-	void initAdminAPI();
-
-	bool getPay(double pay);
-	//工具函数
-	string DishListToJsonArray(const vector<data::Dish>& dishList);
-	vector<data::Dish> DishListFromJsonArray(const string& jsonString);
-
-	string OrderListToJsonArray(const vector<data::Order>&orderList);
-	vector<data::Order> OrderListFromJsonArray(const string& jsonString);
-
-	string OrderDishListToJsonArray(const vector<data::OrderDish>&dishList);
+    void merchantDishList(const HttpRequestPtr &req, std::function<void(const HttpResponsePtr &)> &&callback);
+    void merchantDishRegister(const HttpRequestPtr &req, std::function<void(const HttpResponsePtr &)> &&callback);
+    void merchantDishInfo(const HttpRequestPtr &req, std::function<void(const HttpResponsePtr &)> &&callback);
+    void merhcnatDishUpdate(const HttpRequestPtr &req, std::function<void(const HttpResponsePtr &)> &&callback);
+    void merhcnatDishDel(const HttpRequestPtr &req, std::function<void(const HttpResponsePtr &)> &&callback);
+    void merhcnatOrderList(const HttpRequestPtr &req, std::function<void(const HttpResponsePtr &)> &&callback);
+    void merhcnatOrderDetailDishList(const HttpRequestPtr &req, std::function<void(const HttpResponsePtr &)> &&callback);
+    void merhcnatOrderAccept(const HttpRequestPtr &req, std::function<void(const HttpResponsePtr &)> &&callback);
+    void merchantOrderReject(const HttpRequestPtr &req, std::function<void(const HttpResponsePtr &)> &&callback);
 
 
-private:
-	httplib::Server svr;
-	std::shared_ptr<DatabaseClient> db;
-	string host;
-	int port;
-};
+  private:
+    std::shared_ptr<RedisClient> redis;
+    std::shared_ptr<DatabaseClient> db;
+  };
 }
 
+```
+下面则是业务函数的实现示例
 
+btyGoose_MerchantCtrl.cpp
+```C++
+void MerchantCtrl::merchantDishList(const HttpRequestPtr &req, std::function<void(const HttpResponsePtr &)> &&callback)
+{
+    SUP_LOG_DEBUG("收到HTTP请求, method={},path={}","Post",req->getPath());
+
+    std::string jsonStr = req->getBody().data();
+    Json::Value jsonObj;
+    Json::Reader reader;
+    if (!reader.parse(jsonStr, jsonObj)) {
+        SUP_LOG_ERROR("[商家获取菜品列表]无效的JSON格式:{}",jsonStr);
+        // std::cerr << "Invalid Json: " << jsonStr << "\n";
+        jsonObj = Json::objectValue;
+    }
+    Json::Value resJson;
+        if (jsonObj.empty()) {
+            resJson["message"] = "Json序列化解析失败";
+            auto resp = drogon::HttpResponse::newHttpJsonResponse(resJson);
+            resp->setStatusCode(k400BadRequest);
+            resp->setContentTypeCode(CT_APPLICATION_JSON);
+            callback(resp);
+            return;
+        }
+        
+        std::string merchant_id = jsonObj["merchant_id"].asString();
+        std::string dishListJson = redis->getDishListJsonByMerchant(merchant_id); 
+        SUP_LOG_TRACE("Redis获取到的菜品列表json: {}",dishListJson);
+        if(dishListJson.empty())
+        {
+            std::vector<data::Dish> dishList = db->getDishListByMerchant(merchant_id);
+            dishListJson = json::DishListToJsonArray(dishList);
+            SUP_LOG_TRACE("数据库查询到菜品数量:{} , 获得的菜品json: {}",dishList.size(),dishListJson);
+            redis->setDishListJsonByMerchant(merchant_id,dishListJson);
+        }
+        resJson["dish_list"] = dishListJson;
+        auto resp = drogon::HttpResponse::newHttpJsonResponse(resJson);
+        resp->setStatusCode(k200OK);
+        resp->setContentTypeCode(CT_APPLICATION_JSON);
+        SUP_LOG_INFO("[商家获取菜品列表]成功");
+        callback(resp);
+}
 
 ```
 
@@ -1337,13 +1482,20 @@ private:
 + 运行服务端
 
 ```C++
-#include "HTTPServer.hpp"
+#include "./controllers/btyGoose_TestCtrl.h"
+#include "./controllers/btyGoose_MerchantCtrl.h"
+#include "./controllers/btyGoose_ConsumerCtrl.h"
+#include "./controllers/btyGoose_AccountCtrl.h"
 #include "logger.hpp"
 #include <gflags/gflags.h>
+#include <sw/redis++/redis.h>
 
+
+//服务器相关参数
 DEFINE_string(host,"0.0.0.0","服务器监听的源ip地址范围");
 DEFINE_uint32(port,80,"服务器的监听端口");
 
+//数据库客户端相关参宿
 DEFINE_string(db_user,"root","数据库的连接用户");
 DEFINE_string(db_password,"root_password","数据库用户的密码");
 DEFINE_string(db_host,"localhost","数据库服务所在的ip");
@@ -1358,6 +1510,8 @@ DEFINE_uint32(redis_db,0,"Redis数据库的变化，默认0，范围[0,15]");
 DEFINE_bool(redis_keep_alive,true,"是否保持长连接");
 DEFINE_string(redis_master_password,"password","redis主节点的登录密码");
 
+//日志器相关参数
+DEFINE_string(log_drogon_logdir,"./logs/drogon","drogon日志的输出目录");
 DEFINE_string(log_logfile,"./log/logfile","日志落地文件及路径");
 DEFINE_bool(log_release_mode,false,"设置是否为发布模式输出日志,\ntrue:过滤低等级日志，输出到文件\nfalse:输出所有日志，输出到标准输出");
 DEFINE_int32(log_release_level,spdlog::level::warn,"设置release模式下过滤的日志等级");
@@ -1366,13 +1520,31 @@ int main(int argc, char *argv[])
 {
     google::ParseCommandLineFlags(&argc,&argv,true);//解析命令行参数
     btyGoose::init_logger(FLAGS_log_release_mode,FLAGS_log_logfile,FLAGS_log_release_level);//初始化日志器
-    LOG_DEBUG("全局日志器初始化成功");
+    SUP_LOG_DEBUG("全局日志器初始化成功");
+
     auto db = std::make_shared<btyGoose::DatabaseClient>();
     db->init(FLAGS_db_user,FLAGS_db_password,FLAGS_db_host,FLAGS_db_port,FLAGS_db_database,                         
         std::chrono::seconds(FLAGS_db_reconnect_interval));
-    btyGoose::HTTPServer::getInstance()->setDB(db);
-    btyGoose::HTTPServer::getInstance()->init(FLAGS_host,FLAGS_port);
-    btyGoose::HTTPServer::getInstance()->start();
+    btyGoose::SR::ins().setDB(db);
+    db->start();
+    SUP_LOG_DEBUG("数据库对象设置成功");
+
+    auto redis = std::make_shared<btyGoose::RedisClient>(
+        btyGoose::RedisClient(FLAGS_redis_host,FLAGS_redis_port,FLAGS_redis_db,FLAGS_redis_keep_alive,FLAGS_redis_master_password));
+    if(redis->isOK())
+        SUP_LOG_INFO("Redis连接成功!");
+    else
+        SUP_LOG_ERROR("Redis连接失败!");
+    btyGoose::SR::ins().setRedis(redis);
+
+    //启动服务器
+    SUP_LOG_INFO("drogon日志路径: {}",FLAGS_log_drogon_logdir);
+    app().setLogPath(FLAGS_log_drogon_logdir)
+    .setLogLevel(trantor::Logger::kWarn)
+    .addListener(FLAGS_host, FLAGS_port)
+    .setThreadNum(16)
+    // .enableRunAsDaemon()
+    .run();
     return 0;
 }
 ```
@@ -1396,38 +1568,86 @@ int main(int argc, char *argv[])
 -redis_keep_alive=true
 -redis_master_password=redispass123
 
--log_logfile=./log/logfile
+-log_drogon_logdir=./logs/drogon/
+-log_logfile=./logs/logfile
 -log_release_mode=false
 #warn等级为3
 -log_release_level=3
+
 ```
 
-## makefile 构建项目
+## CMake 构建项目
+
+由于项目已经十分复杂，所以这里使用CMake构建项目
+
+```CMakelists.txt
+cmake_minimum_required(VERSION 3.12)
+project(server)
+
+# C++ standard
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+set(CMAKE_BUILD_TYPE "Release")  
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3 -flto")  # 链接时优化
+set(CMAKE_INTERPROCEDURAL_OPTIMIZATION TRUE)  # IPO优化
+
+# 包含目录设置
+include_directories(
+    /usr/include  # 显式添加常见路径
+    /usr/local/include    # 第三方库常见安装位置
+)
+
+# 查找依赖库
+find_package(Threads REQUIRED)
+# 查找Drogon依赖
+find_package(Drogon REQUIRED COMPOMENTS jsoncpp)
+
+set(CONTROLLERS_DIR "${CMAKE_CURRENT_SOURCE_DIR}/controllers")
+message(STATUS "控制器路径是: ${CONTROLLERS_DIR}")
+
+# 添加可执行文件
+add_executable(
+    server
+    DatabaseClient.cpp 
+    logger.cpp 
+    main.cpp 
+    RedisClient.cpp 
+    ${CONTROLLERS_DIR}/btyGoose_TestCtrl.cc
+    ${CONTROLLERS_DIR}/btyGoose_MerchantCtrl.cc
+    ${CONTROLLERS_DIR}/btyGoose_AccountCtrl.cc
+    ${CONTROLLERS_DIR}/btyGoose_ConsumerCtrl.cc
+)
+
+target_link_libraries(server
+    PRIVATE 
+    mysqlcppconn
+    Threads::Threads 
+    gflags
+    fmt 
+    redis++
+    hiredis
+    Drogon::Drogon 
+    ${JSONCPP_LIBRARIES}
+    ${OPENSSL_LIBRARIES}
+)
+
+
+```
+但是为了方便重复构建和清理构建缓存，我们还是写一个makefile
 
 ```makefile
-LDLIBS = -lmysqlcppconn -ljsoncpp -lpthread -lgflags -lfmt
+.PHONY: clean rebuild
 
-server:main.o DatabaseClient.o HTTPServer.o logger.o
-	g++ -o $@ *.o -std=c++17 $(LDLIBS)
+rebuild: clean build
+	@cd build && cmake .. && make -j2 && cd .. && cp ./build/server ./server && mkdir logs
 
-server-static:main.o DatabaseClient.o HTTPServer.o
-	g++ 
-
-main.o: main.cpp
-	g++ -c main.cpp -o main.o -std=c++17 
-
-DatabaseClient.o:DatabaseClient.cpp 
-	g++ -c DatabaseClient.cpp -o DatabaseClient.o -std=c++17 
-
-HTTPServer.o:HTTPServer.cpp
-	g++ -c HTTPServer.cpp -o HTTPServer.o -std=c++17 
-
-logger.o:logger.cpp
-	g++ -c logger.cpp -o logger.o -std=c++17 
-
-.PHONY:clean
 clean:
-	rm -f server *.o
+	rm -f server 
+	rm -rf build 
+
+build:
+	mkdir -p build 
 ```
 
 ## Dockerfile编写
@@ -1443,9 +1663,18 @@ clean:
 
 ```Dockerfile
 FROM ubuntu:22.04 AS build1
+
+RUN apt update -y && apt install -y git 
+WORKDIR /redispp
+RUN git clone https://github.com/sewenew/redis-plus-plus.git
+RUN mkdir -p /redispp/redis-plus-plus/build
+WORKDIR /
+RUN git clone https://github.com/drogonframework/drogon.git
+WORKDIR /drogon
+RUN git submodule update --init
+
 RUN apt update -y && apt install -y g++ \
     make \
-    git \
     cmake \
     libmysqlcppconn-dev \
     libjsoncpp-dev \
@@ -1453,21 +1682,25 @@ RUN apt update -y && apt install -y g++ \
     libgflags-dev \ 
     libfmt-dev \
     libspdlog-dev \
-    libhiredis-dev 
+    libhiredis-dev \
+    libssl-dev \
+    uuid-dev \
+    zlib1g-dev
 
-WORKDIR /redispp
-RUN git clone https://github.com/sewenew/redis-plus-plus.git
-RUN mkdir -p /redispp/redis-plus-plus/build
+
 WORKDIR /redispp/redis-plus-plus/build
-RUN cmake ..
-RUN make 
-RUN make install
+RUN cmake .. && make && make install
+RUN ldconfig
+
+WORKDIR /drogon
+RUN mkdir -p build && cd ./build  && cmake .. && make && make install
 RUN ldconfig
 
 COPY ./src* /src
 
 WORKDIR /src
-RUN make && mkdir logs
+RUN make && mkdir -p logs/drogon
+RUN ls -al
 #DEBUG
 # RUN make server_g && mkdir logs
 #end
